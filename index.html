@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>UnaAlerta | Monitoramento do Rio Una</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f8f9;
+            color: #17324d;
+        }
+
+        /* CABEÇALHO */
+
+        header {
+            background-color: #0b4f6c;
+            color: white;
+            padding: 20px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 14px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #bde0fe;
+        }
+
+
+        /* CONTEÚDO PRINCIPAL */
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+
+        /* BANNER PRINCIPAL */
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .hero h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #0b4f6c;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+
+            font-size: 18px;
+            line-height: 1.6;
+            color: #4a5964;
+        }
+
+        .botao {
+            display: inline-block;
+
+            background-color: #0b4f6c;
+            color: white;
+
+            padding: 14px 28px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background-color: #083b50;
+            transform: translateY(-2px);
+        }
+
+
+        /* NÍVEL DO RIO */
+
+        .nivel-rio {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .nivel-rio h2 {
+            margin-bottom: 20px;
+        }
+
+        .card-nivel {
+            background-color: white;
+
+            max-width: 380px;
+
+            margin: auto;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .nivel {
+            display: inline-block;
+
+            background-color: #d8f3dc;
+            color: #26734d;
+
+            padding: 8px 20px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+        }
+
+        .card-nivel h3 {
+            font-size: 42px;
+            margin: 18px 0;
+            color: #17324d;
+        }
+
+        .card-nivel p {
+            color: #687780;
+            font-size: 14px;
+        }
+
+
+        /* ACESSO RÁPIDO */
+
+        .atalhos {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .atalhos h2 {
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: white;
+
+            width: 30%;
+
+            padding: 30px 20px;
+
+            border-radius: 15px;
+
+            text-decoration: none;
+
+            color: #17324d;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #0b4f6c;
+        }
+
+        .card p {
+            color: #687780;
+            line-height: 1.5;
+        }
+
+
+        /* RODAPÉ */
+
+        footer {
+            margin-top: 60px;
+
+            background-color: #17324d;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 14px;
+        }
+
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                padding: 50px 10px;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <div class="logo">
+            <h1>UnaAlerta</h1>
+
+            <p>
+                Monitoramento preventivo do Rio Una
+            </p>
+        </div>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+
+            <a href="alertas.html">Alertas</a>
+
+            <a href="mapa.html">Mapa de Risco</a>
+
+            <a href="historico.html">Histórico</a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- CONTEÚDO -->
+
+    <main>
+
+        <!-- APRESENTAÇÃO -->
+
+        <section class="hero">
+
+            <h2>
+                Monitoramento Preventivo do Rio Una
+            </h2>
+
+            <p>
+                Acompanhe informações sobre o nível do rio,
+                áreas de risco e ocorrências de forma simples
+                e organizada.
+            </p>
+
+            <a href="alertas.html" class="botao">
+                Ver Alertas
+            </a>
+
+        </section>
+
+
+        <!-- NÍVEL DO RIO -->
+
+        <section class="nivel-rio">
+
+            <h2>
+                Nível Atual do Rio
+            </h2>
+
+            <div class="card-nivel">
+
+                <span class="nivel">
+                    NORMAL
+                </span>
+
+                <h3>
+                    2,10 m
+                </h3>
+
+                <p>
+                    Dados simulados para fins acadêmicos.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACESSO RÁPIDO -->
+
+        <section class="atalhos">
+
+            <h2>
+                Acesso rápido
+            </h2>
+
+            <div class="cards">
+
+                <a href="alertas.html" class="card">
+
+                    <h3>
+                        Alertas
+                    </h3>
+
+                    <p>
+                        Consulte os níveis de risco
+                        e os alertas registrados.
+                    </p>
+
+                </a>
+
+
+                <a href="mapa.html" class="card">
+
+                    <h3>
+                        Mapa de Risco
+                    </h3>
+
+                    <p>
+                        Visualize os pontos de atenção
+                        e áreas de risco.
+                    </p>
+
+                </a>
+
+
+                <a href="historico.html" class="card">
+
+                    <h3>
+                        Histórico
+                    </h3>
+
+                    <p>
+                        Consulte ocorrências e registros
+                        anteriores.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <p>
+            UnaAlerta — Sistema de Monitoramento Preventivo
+        </p>
+
+        <p>
+            Projeto acadêmico | Dados simulados
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
+```
