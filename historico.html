@@ -1,0 +1,255 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnaAlerta | Mapa de Risco</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f9;
+            color: #17324d;
+        }
+
+        header {
+            background: #0b4f6c;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #bde0fe; }
+
+        main { max-width: 1100px; margin: auto; padding: 40px 20px; }
+
+        .titulo { text-align: center; margin: 20px 0 35px; }
+        .titulo h2 { color: #0b4f6c; font-size: 34px; margin-bottom: 12px; }
+        .titulo p { color: #687780; line-height: 1.5; }
+
+        .legenda {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .legenda span { font-size: 14px; }
+
+        .ponto {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .baixo { background: #2e8b57; }
+        .medio { background: #e0a800; }
+        .alto { background: #c62828; }
+
+        .mapa {
+            position: relative;
+            min-height: 430px;
+            background: #e2edf0;
+            border: 2px solid #c4d8df;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .rio {
+            position: absolute;
+            width: 120%;
+            height: 90px;
+            background: #8ecae6;
+            top: 45%;
+            left: -10%;
+            transform: rotate(-12deg);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .rio::after {
+            content: "RIO UNA";
+            position: absolute;
+            top: 35px;
+            left: 40%;
+            color: #075985;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .local {
+            position: absolute;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            cursor: default;
+        }
+
+        .marcador {
+            display: block;
+            width: 23px;
+            height: 23px;
+            border: 3px solid white;
+            border-radius: 50%;
+            margin: auto auto 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .local strong {
+            display: block;
+            background: white;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .ponto-verde { background: #2e8b57; }
+        .ponto-amarelo { background: #e0a800; }
+        .ponto-vermelho { background: #c62828; }
+
+        .lista-pontos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .card h3 { color: #0b4f6c; margin-bottom: 10px; }
+        .card p { color: #687780; line-height: 1.5; font-size: 14px; }
+
+        .aviso {
+            margin-top: 25px;
+            background: #e8f1f5;
+            padding: 18px;
+            border-radius: 10px;
+            color: #536872;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #17324d;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p { margin: 5px; font-size: 14px; }
+
+        @media (max-width: 700px) {
+            header { flex-direction: column; gap: 20px; text-align: center; }
+            nav { justify-content: center; }
+            .lista-pontos { grid-template-columns: 1fr; }
+            .mapa { min-height: 350px; }
+            .local strong { font-size: 10px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>UnaAlerta</h1>
+        <p>Monitoramento preventivo do Rio Una</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="alertas.html">Alertas</a>
+        <a href="mapa.html">Mapa de Risco</a>
+        <a href="historico.html">Histórico</a>
+    </nav>
+</header>
+
+<main>
+    <section class="titulo">
+        <h2>Mapa de Pontos de Atenção</h2>
+        <p>Representação visual demonstrativa de possíveis áreas de atenção.</p>
+    </section>
+
+    <section class="legenda">
+        <span><i class="ponto baixo"></i> Atenção baixa</span>
+        <span><i class="ponto medio"></i> Atenção moderada</span>
+        <span><i class="ponto alto"></i> Atenção elevada</span>
+    </section>
+
+    <section class="mapa" aria-label="Mapa esquemático demonstrativo">
+        <div class="rio"></div>
+
+        <div class="local" style="top: 25%; left: 25%;">
+            <span class="marcador ponto-verde"></span>
+            <strong>Ponto A</strong>
+        </div>
+
+        <div class="local" style="top: 70%; left: 45%;">
+            <span class="marcador ponto-amarelo"></span>
+            <strong>Ponto B</strong>
+        </div>
+
+        <div class="local" style="top: 30%; left: 75%;">
+            <span class="marcador ponto-vermelho"></span>
+            <strong>Ponto C</strong>
+        </div>
+
+        <div class="local" style="top: 82%; left: 82%;">
+            <span class="marcador ponto-amarelo"></span>
+            <strong>Ponto D</strong>
+        </div>
+    </section>
+
+    <section class="lista-pontos">
+        <article class="card">
+            <h3>Ponto A</h3>
+            <p>Classificação demonstrativa: atenção baixa.</p>
+        </article>
+
+        <article class="card">
+            <h3>Ponto B</h3>
+            <p>Classificação demonstrativa: atenção moderada.</p>
+        </article>
+
+        <article class="card">
+            <h3>Ponto C</h3>
+            <p>Classificação demonstrativa: atenção elevada.</p>
+        </article>
+
+        <article class="card">
+            <h3>Ponto D</h3>
+            <p>Classificação demonstrativa: atenção moderada.</p>
+        </article>
+    </section>
+
+    <div class="aviso">
+        Este mapa é ilustrativo, não georreferenciado e não representa
+        locais oficialmente identificados como áreas de risco.
+        Os pontos foram criados exclusivamente para demonstração acadêmica.
+    </div>
+</main>
+
+<footer>
+    <p>UnaAlerta — Sistema de Monitoramento Preventivo</p>
+    <p>Projeto acadêmico | Dados simulados</p>
+</footer>
+
+</body>
+</html>

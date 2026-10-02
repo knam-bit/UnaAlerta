@@ -1,0 +1,198 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnaAlerta | Alertas</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8f9;
+            color: #17324d;
+        }
+
+        header {
+            background: #0b4f6c;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: #bde0fe; }
+
+        main { max-width: 1100px; margin: auto; padding: 40px 20px; }
+
+        .titulo { text-align: center; margin: 20px 0 35px; }
+        .titulo h2 { color: #0b4f6c; font-size: 34px; margin-bottom: 12px; }
+        .titulo p { color: #687780; line-height: 1.5; }
+
+        .situacao-atual {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .nivel {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .verde { background: #d8f3dc; color: #26734d; }
+        .amarelo { background: #fff3cd; color: #856404; }
+        .vermelho { background: #f8d7da; color: #842029; }
+
+        .situacao-atual h3 { font-size: 32px; margin: 15px; }
+        .situacao-atual p { color: #687780; margin: 8px; }
+
+        .grade {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid;
+        }
+
+        .card h3 { margin-bottom: 15px; }
+        .card p { color: #687780; line-height: 1.6; }
+
+        .normal { border-color: #2e8b57; }
+        .atencao { border-color: #e0a800; }
+        .risco { border-color: #c62828; }
+
+        .orientacoes {
+            background: #e8f1f5;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 35px;
+        }
+
+        .orientacoes h3 { color: #0b4f6c; margin-bottom: 15px; }
+        .orientacoes ul { padding-left: 22px; }
+        .orientacoes li { margin: 10px 0; line-height: 1.5; }
+
+        .aviso {
+            margin-top: 25px;
+            color: #687780;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 50px;
+            background: #17324d;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p { margin: 5px; font-size: 14px; }
+
+        @media (max-width: 700px) {
+            header { flex-direction: column; gap: 20px; text-align: center; }
+            nav { justify-content: center; }
+            .grade { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h1>UnaAlerta</h1>
+        <p>Monitoramento preventivo do Rio Una</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="alertas.html">Alertas</a>
+        <a href="mapa.html">Mapa de Risco</a>
+        <a href="historico.html">Histórico</a>
+    </nav>
+</header>
+
+<main>
+    <section class="titulo">
+        <h2>Painel de Alertas</h2>
+        <p>Acompanhe a classificação demonstrativa da situação do rio.</p>
+    </section>
+
+    <section class="situacao-atual">
+        <h2>Situação demonstrativa atual</h2>
+        <span id="situacaoAlerta" class="nivel verde">NORMAL</span>
+        <h3 id="nivelAlerta">2,10 m</h3>
+        <p>Última atualização: <span id="horaAlerta">--:--</span></p>
+    </section>
+
+    <section class="grade">
+        <article class="card normal">
+            <h3>Normalidade</h3>
+            <p>
+                Condição demonstrativa de nível baixo, sem indicação de
+                atenção no cenário simulado.
+            </p>
+        </article>
+
+        <article class="card atencao">
+            <h3>Atenção</h3>
+            <p>
+                Cenário simulado que indica necessidade de acompanhar
+                comunicados e observar áreas próximas ao rio.
+            </p>
+        </article>
+
+        <article class="card risco">
+            <h3>Risco</h3>
+            <p>
+                Cenário simulado de maior atenção. Em situações reais,
+                procure informações dos órgãos oficiais e siga suas orientações.
+            </p>
+        </article>
+    </section>
+
+    <section class="orientacoes">
+        <h3>Orientações preventivas</h3>
+        <ul>
+            <li>Acompanhe os comunicados da Defesa Civil e dos órgãos oficiais.</li>
+            <li>Evite atravessar ruas alagadas ou áreas com correnteza.</li>
+            <li>Não se aproxime das margens do rio durante chuvas intensas.</li>
+            <li>Mantenha documentos e itens essenciais em local seguro.</li>
+            <li>Em situação de emergência, procure abrigo seguro e peça ajuda às autoridades.</li>
+        </ul>
+    </section>
+
+    <p class="aviso">
+        Os níveis e classificações desta página são demonstrativos e exclusivos
+        para fins acadêmicos. Não constituem alertas oficiais.
+    </p>
+</main>
+
+<footer>
+    <p>UnaAlerta — Sistema de Monitoramento Preventivo</p>
+    <p>Projeto acadêmico | Dados simulados</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+```
